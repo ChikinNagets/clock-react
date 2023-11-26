@@ -1,8 +1,9 @@
-# React + Vite
+# React Clock
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a small app created with react vite with redux integrations. Created to schowcase redux uscases with sibling and child component partitioning. Information can be stores in a redux store making use of global variables to prevent prop drilling.
 
-Currently, two official plugins are available:
+## TODO
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Timer Stops when it reaches zero
+2. Seconds in timer does not show in time format.
+3. Design is lacking.

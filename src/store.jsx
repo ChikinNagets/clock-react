@@ -1,12 +1,9 @@
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { configureStore } from "@reduxjs/toolkit";
+import timerReducer from "./reducers/TimerReducer";
 
-import taskReducer from "./reducers/taskReducer";
-
-const store = createStore(
-  taskReducer,
-  composeWithDevTools(applyMiddleware(thunk))
+export const store = configureStore({
+  reducer: {
+    timer: timerReducer
+  }
+}
 );
-
-export default store;
