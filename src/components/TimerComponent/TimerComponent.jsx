@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 
 import TimerInpuComponent from './TimerInputComponent';
 
+import './timerComponent.css'
+
 export default function TimerComponent () {
 
     const timerValues = useSelector((state) => state.timer)
@@ -11,12 +13,10 @@ export default function TimerComponent () {
     const timerId = useRef()
 
     const startTimer = () => {
-        timerId.current  = setInterval(() => {
-            setSeconds(prev => prev - 1)
-        }, 1000)
-        if(seconds <= 0) {
-            stopTimer()
-            console.log("timer is stopped")
+        if (seconds > 0) {
+            timerId.current  = setInterval(() => {
+                setSeconds(prev => prev - 1)
+            }, 1000)
         }
     }
 
@@ -26,21 +26,27 @@ export default function TimerComponent () {
     }
 
     const resetTimer = () => {
-        stopTimer
+        stopTimer()
         if (seconds) {
             setSeconds(timerValues.value)
         }
     }
 
+    if (seconds <= 0) {
+        stopTimer()
+    }
+
     return (
         <div>
             <div>Second: {seconds}</div>
-            <br /><br />
+            <br />
             <TimerInpuComponent />
-            <br /><br />
-            <Button variant="text" onClick={startTimer}>Start</Button>
-            <Button variant="text" onClick={stopTimer}>Stop</Button>
-            <Button variant="text" onClick={resetTimer}>Reset</Button>
+            <br />
+            <div className='timer-button-container'>
+                <Button variant="text" className="view-button" onClick={startTimer}>Start</Button>
+                <Button variant="text" className="view-button" onClick={stopTimer}>Stop</Button>
+                <Button variant="text" className="view-button" onClick={resetTimer}>Reset</Button>
+            </div>
         </div>
     )
 }

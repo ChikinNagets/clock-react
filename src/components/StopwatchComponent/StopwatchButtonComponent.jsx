@@ -7,6 +7,6 @@ export default function StopwatchButtonComponent () {
     const dispatch = useDispatch()
 
     return (
-        <Button variant="outlined" name="stopwatch" onClick={(e) => dispatch((updateView(e.target.name)))}>Stopwatch</Button>
+        <Button variant="outlined" name="stopwatch" className="view-button" onClick={(e) => dispatch((updateView(e.target.name)))}>Stopwatch</Button>
     )
 }

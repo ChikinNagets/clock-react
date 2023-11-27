@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+import './clock.css'
+
 export default function DisplayComponent () {
     const [time, setTime] = useState()
 
@@ -20,5 +22,5 @@ export default function DisplayComponent () {
     
       }, [])
 
-    return <div>{time}</div>
+    return <div className='time-display'>{time}</div>
 }

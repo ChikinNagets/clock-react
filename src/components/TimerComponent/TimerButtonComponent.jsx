@@ -7,6 +7,6 @@ export default function TimerButtonComponent () {
     const dispatch = useDispatch()
 
     return (
-        <Button variant="outlined" name="timer" onClick={(e) => dispatch((updateView(e.target.name)))}>Timer</Button>
+        <Button variant="outlined" name="timer" className="view-button" onClick={(e) => dispatch((updateView(e.target.name)))}>Timer</Button>
     )
 }

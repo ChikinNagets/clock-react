@@ -7,6 +7,6 @@ export default function ClockButtonComponent () {
     const dispatch = useDispatch()
 
     return (
-        <Button variant="outlined" name="clock" onClick={(e) => dispatch((updateView(e.target.name)))}>Clock</Button>
+        <Button variant="outlined" name="clock" className="view-button" onClick={(e) => dispatch((updateView(e.target.name)))}>Clock</Button>
     )
 }

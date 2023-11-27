@@ -17,9 +17,9 @@ function App() {
 
   return (
     <div>
-      <p>Welcome to your clock</p>
+      <h2 className='welcome-message'>Welcome to your clock</h2>
       { timerValues.view == "clock" ? <ClockComponent /> : timerValues.view == "timer" ? <TimerComponent /> : <StopWatchComponent /> }
-      <div>
+      <div className='components-container'>
         <ClockButtonComponent />
         <TimerButtonComponent />
         <StopwatchButtonComponent />

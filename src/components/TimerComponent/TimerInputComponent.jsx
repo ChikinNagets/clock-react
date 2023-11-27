@@ -8,8 +8,9 @@ export default function TimerComponent () {
     const dispatch = useDispatch()
 
     return (
-        <div>
+        <div className='timer-input-container'>
             <Input 
+                className='timer-input'
                 placeholder='Select you timer value' 
                 onChange={(e) => dispatch((updateInputValue(e.target.value)))}>
             </Input>

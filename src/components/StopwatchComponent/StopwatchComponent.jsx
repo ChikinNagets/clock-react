@@ -28,10 +28,12 @@ export default function StopWatchComponent () {
     return (
         <div>
             <div>Second: {seconds}</div>
-            <br /><br />
-            <Button variant="text" onClick={startTimer}>Start</Button>
-            <Button variant="text" onClick={stopTimer}>Stop</Button>
-            <Button variant="text" onClick={resetTimer}>Reset</Button>
+            <br />
+            <div className='timer-button-container'>
+                <Button variant="text" className="view-button" onClick={startTimer}>Start</Button>
+                <Button variant="text" className="view-button" onClick={stopTimer}>Stop</Button>
+                <Button variant="text" className="view-button" onClick={resetTimer}>Reset</Button>
+            </div>
         </div>
     )
 }
