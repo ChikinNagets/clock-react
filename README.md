@@ -9,4 +9,4 @@ This is a small app created with react vite with redux integrations. Created to 
 3. ~Design is lacking.~
 4. Make reusable component for 'start', 'stop', 'reset' buttonts.
 5. Create utils file to stop and start time buttons for buttons component usage.
-6. If timer is running and user clicks start, a second intervail is created making the counter cont down by 2.
+6. ~If timer is running and user clicks start, a second intervail is created making the counter cont down by 2.~
