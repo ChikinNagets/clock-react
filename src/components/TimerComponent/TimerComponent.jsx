@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import PauseIcon from '@mui/icons-material/Pause';
-import { useEffect, useRef, useState } from 'react';
+import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
 
 import TimerInpuComponent from './TimerInputComponent';
@@ -10,49 +10,51 @@ import TimerInpuComponent from './TimerInputComponent';
 import './timerComponent.css'
 
 export default function TimerComponent () {
-
     const timerValues = useSelector((state) => state.timer)
-    const [delay, setDelay] = useState(+timerValues.value);
-    const minutes = Math.floor(delay / 60);
-    const seconds = Math.floor(delay % 60);
-    // const [ seconds, setSeconds ] = useState(timerValues.value)
-    const timerId = useRef()
+    const [time, setTime] = useState(timerValues.value);
+    const [isRunning, setIsRunning] = useState(false);
 
-    const startTimer = () => {
-        if (seconds > 0) {
-            timerId.current  = setInterval(() => {
-                setDelay(prev => prev - 1)
-            }, 1000)
+    const hours = Math.floor(time / 360000);
+    const minutes = Math.floor((time % 360000) / 6000);
+    const seconds = Math.floor((time % 6000) / 100);
+    const milliseconds = time % 100;
+
+    useEffect(() => {
+        let intervalId;
+        if (isRunning && time > 0) {
+          intervalId = setInterval(() => setTime(time - 1), 10);
         }
-    }
 
-    const stopTimer = () => {
-        clearInterval(timerId.current)
-        timerId.current = timerValues.value
-    }
+        if (isRunning && time === 0) {
+            startAndStop()
+        }
 
-    const resetTimer = () => {
-        stopTimer()
-        setDelay(timerValues.value)
-    }
+        return () => clearInterval(intervalId);
+    }, [isRunning, time]);
 
-    if (seconds <= 0) {
-        stopTimer()
-    }
+    const startAndStop = () => {
+        setIsRunning(!isRunning);
+      };
+
+    const reset = () => {
+        setTime(timerValues.value);
+    };
 
     return (
-        <div>
-            <p>
-                {minutes}:{seconds}
+        <div className="stopwatch-container">
+            <p className="stopwatch-time">
+                {hours}:{minutes.toString().padStart(2, "0")}:
+                {seconds.toString().padStart(2, "0")}:
+                {milliseconds.toString().padStart(2, "0")}
             </p>
             <br />
-            <TimerInpuComponent />
+                <TimerInpuComponent />
             <br />
-            <div className='timer-button-container'>
-                <Button variant="text" className="view-button" startIcon={<PlayArrowIcon sx={{ marginLeft: 0, marginRight: 0 }}/>} onClick={startTimer}></Button>
-                <Button variant="text" className="view-button" startIcon={<PauseIcon sx={{ marginLeft: 0, marginRight: 0 }}/>} onClick={stopTimer}></Button>
-                <Button variant="text" className="view-button" startIcon={<RestartAltIcon sx={{ marginLeft: 0, marginRight: 0 }}/>} onClick={resetTimer}></Button>
+            <div className="stopwatch-buttons">
+                <Button className="stopwatch-button" startIcon={!isRunning ? <PlayArrowIcon sx={{ marginLeft: 0, marginRight: 0 }} /> : <PauseIcon sx={{ marginLeft: 0, marginRight: 0 }}/> } onClick={() => startAndStop()}>            </Button>
+                <Button className="stopwatch-button" startIcon={<RestartAltIcon sx={{ marginLeft: 0, marginRight: 0 }}/>} onClick={() => reset()}></Button>
             </div>
+            <br />
         </div>
     )
 }

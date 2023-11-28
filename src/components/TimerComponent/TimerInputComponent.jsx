@@ -11,7 +11,7 @@ export default function TimerComponent () {
         <div className='timer-input-container'>
             <Input 
                 className='timer-input'
-                placeholder='Select you timer value' 
+                placeholder='Input time in milliseconds' 
                 onChange={(e) => dispatch((updateInputValue(e.target.value)))}>
             </Input>
         </div>
